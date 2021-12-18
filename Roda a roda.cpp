@@ -14,7 +14,7 @@ int main() {
   setlocale(LC_ALL, "Portuguese");
 
   char palavra[3][17], letra, chute, lacuna[17], dica[17], palavras[3][17];
-  int a, i, j, v, cont, qtd, random, quant, valor,vitoria, jogador,pula, p1 = 0, p2 = 0, p3 = 0;
+  int a,i,j, v,fim, cont, qtd, random, quant, valor,vitoria, jogador,pula, p1 = 0, p2 = 0, p3 = 0,compara;
   float premios, premioJoga[3], premio;
   //puxar palavra do txt
   fflush(stdout);
@@ -54,7 +54,7 @@ int main() {
         }
 	
 	
-        //Determinar a posição da palavra 
+        //Determinar a posiÃ§Ã£o da palavra 
         if (cont > 1) {
           if (cont == 2) {
             strcpy(palavras[0], vetor);
@@ -116,74 +116,15 @@ int main() {
   premios = 0;
  
   fflush(stdout);
-
-  
-  jogador =0;
+	vitoria= strlen(palavras[0])+strlen(palavras[1])+strlen(palavras[2]);
+  	compara=vitoria;
+  jogador =1;
   cont=0;
   do {
 
     //Premios//
-   
-	
-
-	if (premio >1){
-    //tela do jogo   
-    printf("A  PALAVRA ESTÁ ASSOCIADA COM:%s.\n", dica);
-	printf("VEZ DO JOGADOR NUMERO  %d\n", jogador);    
-    printf("%20s\n",  charada);
-   
-    if(p2  == 1){
-		printf("%20s\n", charada2);
-	}    
-   	if(p3 == 1){
-	   printf("%20s\n", charada3);
-	}
-   		
-    printf("\n");
-
-    printf("%-20s", "jogador1");
-    printf("%-20s", "jogador2");
-    printf("%-20s", "jogador3\n");
-    printf("%-10s", "=================================================================  \n");
- 
-    printf("R$%-18.2f", premioJoga[0]);
-     printf("R$%-18.2f", premioJoga[1]);
-    printf("R$%-18.2f \n", premioJoga[2]);
-  
-	
-	printf("\n");
-    printf("\n");
-    printf("Valendo R$%-10.2f ", premio);
-  	    //ler o chute//	
-    printf("\nDigite uma letra ");
-    scanf("%s", & letra);
-   letra=toupper(letra);
-	}
-
-	if (premio == 0){
-		
-		printf("%20s"," PASSOU A VEZ ");
-			jogador++;
-			Sleep(3000);
-			if(jogador>3 ){
-				jogador=1;
-			
-			
-			}
-	}
-	if(premio ==-1){		
-		printf("%20s"," PERDEU TUDO ");
-		
-			premioJoga[jogador-1]=premioJoga[jogador-1]-premioJoga[jogador-1];
-			jogador++;
-			Sleep(3000);
-			if(jogador>3 ){
-				jogador=1;
-			
-			
-			}
-	}
-FILE * premioS;
+    
+	FILE * premioS;
     premioS = fopen("Premios.txt", "r");
 
     quant = 0;
@@ -211,40 +152,97 @@ FILE * premioS;
         j++;
       }
     }
-	j=0;
+	
+
+	if (premio >1){
+    //tela do jogo   
+    printf("A  PALAVRA ESTÃ ASSOCIADA COM:%s.\n", dica);
+	printf("VEZ DO JOGADOR NUMERO  %d\n", jogador);    
+    printf("%20s\n",  charada);
+   
+    if(p2  == 1){
+		printf("%20s\n", charada2);
+	}    
+   	if(p3 == 1){
+	   printf("%20s\n", charada3);
+	}
+   		
+    printf("\n");
+
+    printf("%-20s", "jogador1");
+    printf("%-20s", "jogador2");
+    printf("%-20s", "jogador3\n");
+    printf("%-10s", "=================================================================  \n");
+ 
+    printf("R$%-18.2f", premioJoga[0]);
+     printf("R$%-18.2f", premioJoga[1]);
+    printf("R$%-18.2f \n", premioJoga[2]);
   
 	
-
-	
-	// comparar letras com a palavra
+	printf("\n");
+    printf("\n");
+    printf("Valendo R$%-10.2f ", premio);
+  	    //ler o chute//	
+    printf("\nDigite uma letra ");
     
+	scanf("%s", & letra);
+   letra=toupper(letra);
+	}
 
-   
-      
+	if (premio == 0){
+		
+		printf("%20s"," PASSOU A VEZ ");
+			jogador++;
+			jogador++;
+			Sleep(3000);
+			if(jogador>3 ){
+				jogador=1;
+			
+			
+			}
+	}
+	if(premio ==-1){		
+		printf("%20s"," PERDEU TUDO ");
+		
+			premioJoga[jogador-1]=0;
+			jogador++;
+			jogador++;
+			Sleep(3000);
+			if(jogador>3 ){
+				jogador=1;
+			
+			
+			}
+	}	
+	// comparar letras com a palavra  
+     j=0;
+	 v=0;
     	for (int a = 0; a < strlen(palavras[0]); a++) {
-
         if (palavras[0][a] == letra) {
           charada[a] = letra;
-          j++;
+          	j++;
     		cont++;
+			v++;
 			}
     	}
 		for (int a = 0; a < strlen(palavras[1]); a++){ 
 	    if (palavras[1][a] == letra) {
           charada2[a] = letra;
-          j++;
+          	j++;
 			cont++;
+			v++;
 			}
         }
 		for (int a = 0; a < strlen(palavras[2]); a++) {
         if (palavras[2][a] == letra) {
           charada3[a] = letra;
-          j++;
+         	j++;
     		cont++;
+			v++;
 			}	
 		}
    		//somando os premios 
-       	if (j>0){
+       	if (j>=1){
       	premioJoga[jogador-1]=premioJoga[jogador-1]+(premio*j); 
 	 
 	  }
@@ -254,13 +252,22 @@ FILE * premioS;
 				jogador=1;
 			}
 		}
-		
-	system("cls");	
+		system("cls");
+				vitoria=vitoria-v;
+			
 	
 
  	
 
-  } while (v!=1);
+  } while (vitoria > 4);
+	//fazer telas de fim de jogo	
+	for (fim =0;fim<4;fim++)	
+	Sleep(2000);
+	
+	
+	
 	printf("fim de jogo");
+	
+	
 }
 
