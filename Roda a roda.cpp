@@ -203,7 +203,7 @@ int main() {
 		printf("%20s"," PERDEU TUDO ");
 		
 			premioJoga[jogador-1]=0;
-			if(premio[jogaodr-1=0]){
+			if(premioJoga[jogador-1]==0){
 			jogador++;
 			jogador++;
 			Sleep(3000);
