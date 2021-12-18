@@ -105,8 +105,7 @@ int main() {
   	}
 
 
-  size = strlen(palavras[2]);
-
+  	size = strlen(palavras[2]);
 	p3 = size > 2 ? 1 : 0;
   char charada3[size] = "";
   for (i = 0; i < strlen(palavras[2]); i++) {
@@ -116,12 +115,11 @@ int main() {
   premios = 0;
  
   fflush(stdout);
-	vitoria= strlen(palavras[0])+strlen(palavras[1])+strlen(palavras[2]);
-  	compara=vitoria;
-  jogador =1;
-  cont=0;
-  do {
 
+    cont=0;
+ jogador=1;
+  do {
+	vitoria= strlen(palavras[0])+strlen(palavras[1])+strlen(palavras[2]);
     //Premios//
     
 	FILE * premioS;
@@ -259,7 +257,7 @@ int main() {
 
  	
 
-  } while (vitoria > 4);
+  } while (vitoria > 5);
 	//fazer telas de fim de jogo	
 	for (fim =0;fim<4;fim++)	
 	Sleep(2000);
@@ -270,4 +268,3 @@ int main() {
 	
 	
 }
-
