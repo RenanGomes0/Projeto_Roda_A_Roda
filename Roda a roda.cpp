@@ -191,7 +191,7 @@ int main() {
 		
 		printf("%20s"," PASSOU A VEZ ");
 			jogador++;
-			jogador++;
+			
 			Sleep(3000);
 			if(jogador>3 ){
 				jogador=1;
@@ -205,7 +205,7 @@ int main() {
 			premioJoga[jogador-1]=0;
 			if(premioJoga[jogador-1]==0){
 			jogador++;
-			jogador++;
+			
 			Sleep(3000);
 			}
 			if(jogador>3 ){
