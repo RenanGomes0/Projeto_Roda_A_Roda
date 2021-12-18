@@ -257,7 +257,7 @@ int main() {
 
  	
 
-  } while (vitoria > 5);
+  } while (vitoria > 3);
 	//fazer telas de fim de jogo	
 	for (fim =0;fim<4;fim++)	
 	Sleep(2000);
